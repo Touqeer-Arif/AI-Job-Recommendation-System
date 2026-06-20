@@ -1,0 +1,60 @@
+{
+  "project_name": "AI Job Recommendation System",
+  "random_seed": 42,
+  "kaggle_dataset": "mdtalhask/ai-powered-resume-screening-dataset-2025",
+  "raw_csv_filename": "resume_data.csv",
+  "data": {
+    "raw_path": "data/raw/resume_data.csv",
+    "processed_path": "data/processed/cleaned_resume_data.csv",
+    "test_size": 0.2,
+    "val_size": 0.1
+  },
+  "features": {
+    "skill_vectorizer": "tfidf",
+    "tfidf_max_features": 300,
+    "numeric_features": ["experience_years", "projects_count"],
+    "categorical_features": ["education"],
+    "target_classification": "job_role",
+    "target_regression": "salary_expectation"
+  },
+  "models": {
+    "classifier": {
+      "type": "RandomForestClassifier",
+      "n_estimators": 200,
+      "max_depth": 20,
+      "min_samples_split": 4,
+      "class_weight": "balanced"
+    },
+    "classifier_baseline": {
+      "type": "LogisticRegression",
+      "max_iter": 1000
+    },
+    "regressor": {
+      "type": "RandomForestRegressor",
+      "n_estimators": 200,
+      "max_depth": 15,
+      "min_samples_split": 4
+    },
+    "regressor_baseline": {
+      "type": "LinearRegression"
+    }
+  },
+  "training": {
+    "cv_folds": 5,
+    "scoring_classification": "f1_weighted",
+    "scoring_regression": "neg_mean_absolute_error"
+  },
+  "paths": {
+    "model_dir": "models/",
+    "classifier_path": "models/job_role_classifier.joblib",
+    "regressor_path": "models/salary_regressor.joblib",
+    "vectorizer_path": "models/skill_vectorizer.joblib",
+    "encoder_path": "models/label_encoders.joblib",
+    "results_dir": "results/",
+    "mlruns_dir": "mlruns/"
+  },
+  "mlflow": {
+    "experiment_name": "ai_job_recommender",
+    "tracking_uri": "mlruns"
+  }
+}

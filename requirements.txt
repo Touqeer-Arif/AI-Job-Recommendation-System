@@ -1,0 +1,45 @@
+# Core
+# NOTE: versions are intentionally NOT pinned to old exact releases.
+# numpy==1.26.4 / scikit-learn==1.4.2 have no prebuilt wheels for newer
+# Python versions (e.g. 3.13) and fail to build from source without a C
+# compiler installed. Using ">=" lets pip install the latest compatible
+# prebuilt wheels, which also better matches whatever recent scikit-learn/
+# numpy version Google Colab used to train and save your models/*.joblib
+# files (Colab is frequently updated, so pinning old versions here could
+# actually cause an unpickling mismatch with your already-trained models).
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.4
+scipy>=1.13
+
+# Experiment tracking (covers Week 3 CLO2 requirement)
+mlflow>=2.13
+
+# NLP feature extraction (skills text -> TF-IDF, covers NLP track CLO4)
+nltk>=3.8
+
+# CV parsing (PDF / DOCX resume upload)
+pdfplumber>=0.11
+python-docx>=1.1
+
+# Kaggle dataset download via API token (OPTIONAL - only needed if you use
+# src/download_data.py instead of uploading the CSV directly in Colab)
+kaggle>=1.6
+
+# Visualization (loss curves, confusion matrix, etc.)
+matplotlib>=3.8
+seaborn>=0.13
+
+# Model persistence
+joblib>=1.4
+
+# Jupyter (Colab-compatible notebook execution)
+notebook>=7.2
+ipykernel>=6.29
+
+# Desktop GUI deployment (Tkinter ships with Python; ttkbootstrap gives a modern theme)
+ttkbootstrap>=1.10
+
+# Pillow needed by ttkbootstrap/Tkinter image handling
+Pillow>=10.3
+
